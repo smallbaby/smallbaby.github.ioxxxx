@@ -100,7 +100,7 @@
 <p>第一天，PM要求表格展示4列明细数据就OK</p>
 <p>实时接口实现步骤：</p>
 <ul>
-<li>需要知道每个维度都有哪些枚举值，比如端：app/m/pc/other，城市有上百个，这些枚举值我可以从维表获取</li>
+<li>需要知道每个维度都有哪些枚举值，比如端：app/m/pc/other，省市有32个，这些枚举值我可以从维表获取</li>
 <li>拼key,大约需要拼 2 * 4 * 32 = 256</li>
 </ul>
 <p>第二天，PM提出新要求，要求按照某列排序</p>
@@ -108,7 +108,13 @@
 <li>内存排序</li>
 </ul>
 <p>第三天，PM要求加一列，显示点击率 ( click_pv/pv)</p>
+<ul>
+<li>衍生指标计算，支持公式定义的指标</li>
+</ul>
 <p>第四天，点击率要求保留2位小数</p>
+<ul>
+<li>格式化处理</li>
+</ul>
 <p>第五天，点击率要百分制</p>
 <p>第六天，按照点击率倒序显示表格</p>
 <p>第七天，表格要做分页,一页10个</p>
@@ -132,7 +138,7 @@
 <li>dalongrong/redisql (可用）</li>
 <li>rediSQL开放的镜像远程服务网络有问题</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1、docker pull dalongrong/redisql <span class="comment"># ( 默认你有可用docker</span></span><br><span class="line">2、docker run -p  127.0.0.1:6379:6379 -it  dalongrong/redisql （ 暴露6379端口）</span><br><span class="line">3、redis-cli -p 6379 （ 连接的就是镜像中启动的redis)</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker pull dalongrong/redisql <span class="comment"># ( 默认你有可用docker</span></span><br><span class="line">docker run -p  127.0.0.1:6379:6379 -it  dalongrong/redisql （ 暴露6379端口）</span><br><span class="line">redis-cli -p 6379 （ 连接的就是镜像中启动的redis)</span><br></pre></td></tr></table></figure>
 
 <p>试用</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">创建数据库：REDISQL.CREATE_DB helloworld</span><br><span class="line">创建表：REDISQL.EXEC helloworld "<span class="keyword">CREATE</span> <span class="keyword">TABLE</span> abc(A <span class="built_in">INT</span>, B <span class="built_in">TEXT</span>);"</span><br><span class="line">查询：REDISQL.EXEC helloworld "<span class="keyword">select</span> * <span class="keyword">from</span> abc<span class="string">"</span></span><br><span class="line"><span class="string">测试：SELECT position, dt, sum(req_pv) as req_pv FROM adm_rcmd_all_di GROUP BY dt,position having(sum(req_pv) &gt; 432683005803)  order by position,req_pv desc limit 100</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">SQL大部分功能都可以很好支持</span></span><br></pre></td></tr></table></figure>
@@ -175,7 +181,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://smallbaby.github.io/2019/09/19/rediSQL使用记录/" data-id="ck0qve3c90001ptsfxb8s9bs5" class="article-share-link">Share</a>
+      <a data-url="https://smallbaby.github.io/2019/09/19/rediSQL使用记录/" data-id="ck0qvmx8v000298sf8zggmlbk" class="article-share-link">Share</a>
       
       
       
@@ -364,7 +370,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://smallbaby.github.io/2019/09/08/highly-Effective-Persons/" data-id="ck0qve3ch0005ptsfzslmegam" class="article-share-link">Share</a>
+      <a data-url="https://smallbaby.github.io/2019/09/08/highly-Effective-Persons/" data-id="ck0qvmx8t000198sf45b3tifr" class="article-share-link">Share</a>
       
       
       
@@ -405,7 +411,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://smallbaby.github.io/2019/08/30/职场-酒场/" data-id="ck0qve3cf0004ptsfnr4vr3om" class="article-share-link">Share</a>
+      <a data-url="https://smallbaby.github.io/2019/08/30/职场-酒场/" data-id="ck0qvmx9l000598sffoeoisgv" class="article-share-link">Share</a>
       
       
       
@@ -447,7 +453,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://smallbaby.github.io/2019/08/28/idea-about-big-data/" data-id="ck0qve3cc0002ptsfipgk0x7s" class="article-share-link">Share</a>
+      <a data-url="https://smallbaby.github.io/2019/08/28/idea-about-big-data/" data-id="ck0qvmx9n000698sfnvin1er3" class="article-share-link">Share</a>
       
       
       
@@ -500,7 +506,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://smallbaby.github.io/2019/08/28/hello-world/" data-id="ck0qve3c30000ptsfnrxb5ib2" class="article-share-link">Share</a>
+      <a data-url="https://smallbaby.github.io/2019/08/28/hello-world/" data-id="ck0qvmx8n000098sfis44cfjo" class="article-share-link">Share</a>
       
       
       
